@@ -6,8 +6,8 @@ WORKDIR /app
 # Copy the entire project to the container
 COPY . .
 
-# Install Maven and OpenJDK
-RUN apt update && apt install maven openjdk-11-jdk -y
+# Install Maven and OpenJDK 17
+RUN apt update && apt install maven openjdk-17-jdk -y
 
 # Build the Maven project
 RUN mvn clean package -DskipTests=true
