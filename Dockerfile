@@ -1,6 +1,19 @@
 FROM ubuntu:latest
-WORKDIR .
+
+# Set the working directory to the location of your Maven project
+WORKDIR /app
+
+# Copy the entire project to the container
+COPY . .
+
+# Install Maven and OpenJDK
 RUN apt update && apt install maven openjdk-11-jdk -y
+
+# Build the Maven project
 RUN mvn clean package -DskipTests=true
+
+# Expose the port on which your application will run
 EXPOSE 8080
-CMD [ "java -jar target/*.jar"]
+
+# Run the Java application
+CMD ["java", "-jar", "target/*.jar"]
